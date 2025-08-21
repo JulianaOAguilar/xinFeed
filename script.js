@@ -34,7 +34,6 @@ function renderPosts() {
 }
 
 
-
 // toggle the visibility of the new post form
 function togglePostForm(show) {
     newPostInput.hidden = !show;
@@ -43,10 +42,27 @@ function togglePostForm(show) {
 }
 
 
+function addPost(content) {
+    if (!content) {
+        alert("Digite um post antes de enviar!");
+        return;
+    }
+
+    xinfeed.posts.push({
+        content: content
+    });
+
+    togglePostForm(false);
+    renderPosts();
+}
+
 
 // when loaded, render the posts
 window.addEventListener('load', renderPosts);
 
 // Event listener for the send post button
 newPostButton.addEventListener('click', () => togglePostForm(true));
+
+sendPostButton.addEventListener('click', () => addPost(newPostInput.value));
+
 
