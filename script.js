@@ -14,11 +14,8 @@ const xinfeed = {
 // create a post element
 function createPostElement(post) {
 
-
     const postContainer = document.createElement('article');
     postContainer.style.position = 'relative';
-
-
 
     const postUser = document.createElement('h1');
     postUser.textContent = post.user;
@@ -31,9 +28,17 @@ function createPostElement(post) {
     postDate.classList.add('postDate');
 
     const editBtn = document.createElement('button');
-    editBtn.textContent = "✏️";
     editBtn.classList.add('editBtn');
 
+    const editIcon = document.createElement('img');
+    editIcon.src = 'icon/editIcon.svg';
+    editIcon.alt = 'Editar';
+    editIcon.classList.add('editIcon');
+
+    editBtn.appendChild(editIcon); 
+
+
+    // create an edit button
     editBtn.addEventListener("click", () => {
         const input = document.createElement('input');
         input.type = "text";
@@ -56,16 +61,24 @@ function createPostElement(post) {
         input.focus(); // foco imediato no input
     });
 
+    // create a delete button
     const deleteBtn = document.createElement('button');
-    deleteBtn.textContent = "🗑";
+
     deleteBtn.classList.add('deleteBtn');
 
-     deleteBtn.addEventListener("click", () => {
+    const deleteIcon = document.createElement('img');
+    deleteIcon.src = 'icon/deleteIcon.svg';
+    deleteIcon.alt = 'delete';
+   deleteIcon.classList.add('deleteIcon');
+
+    deleteBtn.appendChild(deleteIcon);
+
+    deleteBtn.addEventListener("click", () => {
         postContainer.remove();
         xinfeed.posts = xinfeed.posts.filter(t => !(t.user === post.user && t.date === post.date));
     });
 
-    
+
     postContainer.append(postUser, postText, postDate, editBtn, deleteBtn);
     return postContainer;
 }
@@ -87,6 +100,7 @@ function togglePostForm(show) {
     if (show) newPostInput.value = '';
 }
 
+// format the current date and time
 function formatDate() {
     const agora = new Date();
     return `${agora.getDate().toString().padStart(2, '0')}/` +
@@ -123,4 +137,8 @@ newPostButton.addEventListener('click', () => togglePostForm(true));
 
 sendPostButton.addEventListener('click', () => addPost(newPostInput.value));
 
+// Event listener for the Enter key in the new post input
+newPostInput.addEventListener('keydown', e => {
+    if (e.key === "Enter") addPost(newPostInput.value);
+});
 
