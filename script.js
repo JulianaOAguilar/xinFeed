@@ -32,11 +32,17 @@ function createPostElement(post) {
 
     const editBtn = document.createElement('button');
     editBtn.textContent = "✏️";
-    editBtn.classList.add('edit-btn');
+    editBtn.classList.add('editBtn');
 
     const deleteBtn = document.createElement('button');
     deleteBtn.textContent = "🗑";
-    deleteBtn.classList.add('delete-btn');
+    deleteBtn.classList.add('deleteBtn');
+
+     deleteBtn.addEventListener("click", () => {
+        postContainer.remove();
+        xinfeed.posts = xinfeed.posts.filter(t => !(t.user === post.user && t.date === post.date));
+    });
+
     
     postContainer.append(postUser, postText, postDate, editBtn, deleteBtn);
     return postContainer;
