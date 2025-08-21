@@ -137,5 +137,5 @@ article:hover button {
 
 .editBtn,
 .deleteBtn {
-  display: none; /* escondido por padrão */
+  display: none; 
 }
