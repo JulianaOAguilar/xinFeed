@@ -13,14 +13,22 @@ const xinfeed = {
 
 // create a post element
 function createPostElement(post) {
+
     
     const postContainer = document.createElement('article');
     postContainer.style.position = 'relative';
 
+    const postUser = document.createElement('h1');
+    postUser.textContent = post.user;
+
     const postText = document.createElement('p');
     postText.textContent = post.content;
 
-    postContainer.append(postText);
+    const postDate = document.createElement('span');
+    postDate.textContent = post.date;
+    postDate.classList.add('postDate');
+
+    postContainer.append(postUser, postText, postDate);
     return postContainer;
 }
 
@@ -41,7 +49,17 @@ function togglePostForm(show) {
     if (show) newPostInput.value = '';
 }
 
+function formatDate() {
+    const agora = new Date();
+    return `${agora.getDate().toString().padStart(2, '0')}/` +
+        `${(agora.getMonth() + 1).toString().padStart(2, '0')}/` +
+        `${agora.getFullYear()} ` +
+        `${agora.getHours().toString().padStart(2, '0')}:` +
+        `${agora.getMinutes().toString().padStart(2, '0')}`;
+}
 
+
+// add a new post to the xinfeed
 function addPost(content) {
     if (!content) {
         alert("Digite um post antes de enviar!");
@@ -49,7 +67,9 @@ function addPost(content) {
     }
 
     xinfeed.posts.push({
-        content: content
+        user: 'Xinlana',
+        content: content,
+        date: formatDate()
     });
 
     togglePostForm(false);
