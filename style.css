@@ -1,10 +1,9 @@
-/* Fundo do body */
+
 body {
   background-image: url('image.png');
   margin: 0;
   font-family: Arial, sans-serif;
 }
-
 
 .newpostbar {
   display: flex;
@@ -37,7 +36,6 @@ body {
   box-sizing: border-box;
 }
 
-/* Artigos/posts */
 article {
   background-color: #ffd6d8;
   padding: 10px;
@@ -111,4 +109,28 @@ input {
   article {
     max-width: 100%;
   }
+}
+
+.edit-btn {
+  right: 40px;
+}
+
+.editInput {
+  background-color: #ffdfe0;
+
+}
+
+.edit-btn:hover {
+  background-color: #ffd966;
+  transform: scale(1.1);
+}
+
+.delete-btn {
+  right: 5px;
+}
+
+.delete-btn:hover {
+  background-color: #ff6666;
+  color: white;
+  transform: scale(1.1);
 }

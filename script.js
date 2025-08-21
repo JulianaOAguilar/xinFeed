@@ -29,8 +29,16 @@ function createPostElement(post) {
     const postDate = document.createElement('span');
     postDate.textContent = post.date;
     postDate.classList.add('postDate');
+
+    const editBtn = document.createElement('button');
+    editBtn.textContent = "✏️";
+    editBtn.classList.add('edit-btn');
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = "🗑";
+    deleteBtn.classList.add('delete-btn');
     
-    postContainer.append(postUser, postText, postDate);
+    postContainer.append(postUser, postText, postDate, editBtn, deleteBtn);
     return postContainer;
 }
 
