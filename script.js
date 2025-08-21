@@ -34,6 +34,28 @@ function createPostElement(post) {
     editBtn.textContent = "✏️";
     editBtn.classList.add('editBtn');
 
+    editBtn.addEventListener("click", () => {
+        const input = document.createElement('input');
+        input.type = "text";
+        input.classList.add('editInput');
+        input.value = postText.textContent;
+
+        postText.replaceWith(input); // troca <p> pelo input
+
+        function salvar() {
+            postText.textContent = input.value; // atualiza o texto
+            post.content = input.value;         // atualiza no array
+            input.replaceWith(postText);        // volta a ser <p>
+        }
+
+        input.addEventListener("blur", salvar);
+        input.addEventListener("keydown", e => {
+            if (e.key === "Enter") salvar();
+        });
+
+        input.focus(); // foco imediato no input
+    });
+
     const deleteBtn = document.createElement('button');
     deleteBtn.textContent = "🗑";
     deleteBtn.classList.add('deleteBtn');
