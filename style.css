@@ -134,3 +134,8 @@ article:hover button {
   top: 10px;
   padding: 5px 10px;
 }
+
+.editBtn,
+.deleteBtn {
+  display: none; /* escondido por padrão */
+}
