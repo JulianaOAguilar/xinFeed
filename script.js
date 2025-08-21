@@ -14,9 +14,11 @@ const xinfeed = {
 // create a post element
 function createPostElement(post) {
 
-    
+
     const postContainer = document.createElement('article');
     postContainer.style.position = 'relative';
+
+
 
     const postUser = document.createElement('h1');
     postUser.textContent = post.user;
@@ -27,7 +29,7 @@ function createPostElement(post) {
     const postDate = document.createElement('span');
     postDate.textContent = post.date;
     postDate.classList.add('postDate');
-
+    
     postContainer.append(postUser, postText, postDate);
     return postContainer;
 }
